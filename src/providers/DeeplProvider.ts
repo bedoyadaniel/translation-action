@@ -15,9 +15,11 @@ export default class DeeplProvider extends ProviderBase {
   }
 
   async translate(text: string, lang: string): Promise<string[]> {
-    const [from, to]: string[] = lang.split('|')
+    const parts: string[] = lang.split('-')
+    const source = parts.shift()!                 // first element: 'es'
+    const target = parts.join('-')                // rest joined: 'pt-br'
     const result: TextResult = await this.translator.translateText<string>(
-      text, from as SourceLanguageCode, to as TargetLanguageCode
+      text, source as SourceLanguageCode, target as TargetLanguageCode
     )
     return Promise.resolve([result.text])
   }
