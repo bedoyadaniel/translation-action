@@ -23,7 +23,7 @@ export default class DeeplProvider extends ProviderBase {
   console.debug(`Target language: ${target}`)
     
     const result: TextResult = await this.translator.translateText<string>(
-      text, source as SourceLanguageCode, target as TargetLanguageCode
+      text, es, pt-br
     )
     return Promise.resolve([result.text])
   }
