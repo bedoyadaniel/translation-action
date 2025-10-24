@@ -18,6 +18,10 @@ export default class DeeplProvider extends ProviderBase {
     const parts: string[] = lang.split('-')
     const source = parts.shift()!                 // first element: 'es'
     const target = parts.join('-')                // rest joined: 'pt-br'
+
+  console.debug(`Source language: ${source}`)
+  console.debug(`Target language: ${target}`)
+    
     const result: TextResult = await this.translator.translateText<string>(
       text, source as SourceLanguageCode, target as TargetLanguageCode
     )
